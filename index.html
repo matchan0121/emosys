@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社エモシス | システムで感動を生む</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #016AAD;
+        --primary-light: #0288d1;
+        --primary-dark: #01508a;
+        --accent: #E4AD44;
+        --accent-light: #f7c976;
+        --accent-dark: #c99328;
+        --light: #f8fafd;
+        --dark: #2d3748;
+        --gray: #f0f4f8;
+        --text: #333333;
+        --text-light: #666666;
+        --border-radius: 12px;
+        --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+        color: var(--text);
+        line-height: 1.6;
+        background-color: #fff;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* ヘッダー */
+    header {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        padding: 12px 0;
+        transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+        padding: 8px 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    /* ロゴ関連のスタイルを修正 */
+    .logo {
+        display: flex;
+        align-items: center;
+        background: none !important;
+    }
+    
+    .logo img {
+        height: 40px;
+        transition: all 0.3s ease;
+        background: none !important;
+        mix-blend-mode: multiply; /* 背景と混ぜる */
+    }
+    
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+    
+    nav ul li {
+        margin-left: 35px;
+    }
+    
+    nav ul li a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        position: relative;
+        padding: 5px 0;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    
+    nav ul li a:hover {
+        color: var(--primary);
+    }
+    
+    nav ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary);
+        transition: width 0.3s ease;
+    }
+    
+    nav ul li a:hover::after {
+        width: 100%;
+    }
+    
+    .mobile-menu {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    /* ヒーローセクション */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #01508a 0%, #016AAD 50%, #0288d1 100%);
+        color: white;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        opacity: 0.1;
+    }
+    
+    .hero-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .particle {
+        position: absolute;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 15s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+        0% {
+            transform: translateY(0) translateX(0);
+        }
+        25% {
+            transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+            transform: translateY(0) translateX(20px);
+        }
+        75% {
+            transform: translateY(20px) translateX(10px);
+        }
+        100% {
+            transform: translateY(0) translateX(0);
+        }
+    }
+    
+    .hero-container {
+        padding: 150px 0 80px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+    }
+    
+    .hero-content {
+        position: relative;
+    }
+    
+    .company-name {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+        display: inline-block;
+        padding: 5px 15px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+    }
+    
+    .catchphrase-wrapper {
+        position: relative;
+        margin-bottom: 40px;
+    }
+    
+    .catchphrase {
+        font-size: 3rem;
+        line-height: 1.2;
+        font-weight: 700;
+        position: relative;
+        margin: 0;
+    }
+    
+    .catchphrase .highlight {
+        display: block;
+        color: var(--accent);
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+        position: relative;
+    }
+    
+    .catchphrase .highlight::after {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 3px;
+        background-color: var(--accent);
+        bottom: -8px;
+        left: 0;
+        border-radius: 2px;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        max-width: 500px;
+    }
+    
+    .hero-image-container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .hero-image {
+        position: relative;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        transform: perspective(1000px) rotateY(-5deg);
+        transition: transform 0.5s ease;
+    }
+    
+    .hero-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(1, 106, 173, 0.2) 0%, rgba(228, 173, 68, 0.2) 100%);
+        z-index: 1;
+    }
+    
+    .hero-image:hover {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    
+    .hero-image:hover img {
+        transform: scale(1.05);
+    }
+    
+    .hero-decoration {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 2px solid rgba(228, 173, 68, 0.3);
+        border-radius: 50%;
+        top: -30px;
+        right: -30px;
+        z-index: -1;
+    }
+    
+    .btn-container {
+        display: flex;
+        gap: 15px;
+        margin-top: 40px;
+    }
+    
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--accent);
+        color: white;
+        padding: 16px 36px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(228, 173, 68, 0.3);
+        font-size: 1.05rem;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: var(--accent-dark);
+        transition: width 0.3s ease;
+        z-index: -1;
+    }
+    
+    .btn:hover::before {
+        width: 100%;
+    }
+    
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(228, 173, 68, 0.4);
+    }
+    
+    .btn-secondary {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+        box-shadow: none;
+    }
+    
+    .btn-secondary::before {
+        background-color: white;
+    }
+    
+    .btn-secondary:hover {
+        color: var(--primary);
+    }
+    
+    .scroll-down {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        text-decoration: none;
+    }
+    
+    .scroll-down:hover {
+        opacity: 1;
+    }
+    
+    .scroll-down span {
+        margin-bottom: 8px;
+    }
+    
+    .scroll-down .arrow {
+        width: 30px;
+        height: 30px;
+        border: 2px solid white;
+        border-radius: 50%;
+        position: relative;
+        animation: bounce 2s infinite;
+    }
+    
+    .scroll-down .arrow::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+    }
+    
+    /* 共通セクションスタイル */
+    section {
+        padding: 100px 0;
+        position: relative;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+    }
+    
+    .section-subtitle {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 10px;
+        display: block;
+    }
+    
+    .section-title h2 {
+        font-size: 2.2rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+        font-weight: 700;
+    }
+    
+    .section-title h2::after {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 3px;
+        background-color: var(--accent);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+    
+    .section-title p {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+    
+    /* 企業理念セクション */
+    .about {
+        background-color: white;
+        overflow: hidden;
+    }
+    
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    
+    .about-text {
+        position: relative;
+    }
+    
+    .about-text p {
+        margin-bottom: 25px;
+        font-size: 1.05rem;
+        color: var(--text-light);
+        line-height: 1.8;
+    }
+    
+    .about-text p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .highlight-text {
+        color: var(--primary);
+        font-weight: 600;
+    }
+    
+    .highlight-text.accent {
+        color: var(--accent);
+    }
+    
+    .about-image {
+        position: relative;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-image::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 2px solid var(--accent);
+        border-radius: calc(var(--border-radius) + 10px);
+        z-index: -1;
+    }
+    
+    .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    
+    .about-image:hover img {
+        transform: scale(1.05);
+    }
+    
+    /* 理念ポイントセクション */
+    .philosophy {
+        background-color: var(--light);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .philosophy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .philosophy-point {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    
+    .philosophy-point::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        z-index: 1;
+    }
+    
+    .philosophy-point:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .philosophy-point h3 {
+        color: var(--primary);
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    .philosophy-point h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: var(--accent);
+    }
+    
+    .philosophy-icon {
+        font-size: 2.2rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    
+    /* サービスセクション */
+    .services {
+        background-color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+    }
+    
+    .service-card {
+        background-color: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-image {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .service-card:hover .service-image img {
+        transform: scale(1.1);
+    }
+    
+    .service-content {
+        padding: 35px;
+        position: relative;
+    }
+    
+    .service-content h3 {
+        color: var(--primary);
+        margin-bottom: 20px;
+        font-size: 1.4rem;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    .service-content h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: var(--accent);
+    }
+    
+    .service-icon {
+        position: absolute;
+        top: -30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        box-shadow: 0 10px 20px rgba(1, 106, 173, 0.3);
+        z-index: 2;
+    }
+    
+    /* 会社概要セクション */
+    .company {
+        background-color: var(--light);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .company-info {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 50px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    
+    .company-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--primary), var(--accent));
+    }
+    
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .info-table tr {
+        border-bottom: 1px solid #eee;
+    }
+    
+    .info-table tr:last-child {
+        border-bottom: none;
+    }
+    
+    .info-table th {
+        padding: 20px 15px;
+        text-align: left;
+        width: 30%;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 1.05rem;
+    }
+    
+    .info-table td {
+        padding: 20px 15px;
+        font-size: 1rem;
+    }
+    
+    /* お問い合わせセクション */
+    .contact {
+        background-color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    
+    .contact-info {
+        padding-right: 30px;
+    }
+    
+    .contact-info h3 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+    
+    .contact-info p {
+        margin-bottom: 30px;
+        font-size: 1.05rem;
+        color: var(--text-light);
+    }
+    
+    .contact-method {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background-color: var(--light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+    
+    .contact-form {
+        background-color: white;
+        padding: 50px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 1;
+    }
+    
+    .contact-form::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background-color: var(--primary);
+        border-radius: calc(var(--border-radius) + 10px);
+        z-index: -1;
+        opacity: 0.05;
+    }
+    
+    .form-group {
+        margin-bottom: 25px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 15px 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s;
+        background-color: #f9fafc;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(1, 106, 173, 0.1);
+        background-color: white;
+    }
+    
+    textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+    }
+    
+    .submit-btn {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+        box-shadow: 0 10px 25px rgba(1, 106, 173, 0.3);
+    }
+    
+    .submit-btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(1, 106, 173, 0.4);
+    }
+    
+    /* フッター */
+    footer {
+        background-color: var(--primary);
+        color: white;
+        padding: 80px 0 30px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        opacity: 0.1;
+        z-index: 0;
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* ロゴ関連のスタイルを修正 */
+    .footer-logo {
+        margin-bottom: 20px;
+        background: none !important;
+    }
+    
+    .footer-logo img {
+        height: 40px;
+        margin-bottom: 15px;
+        background: none !important;
+        mix-blend-mode: screen; /* フッターは背景が暗いのでscreenを使用 */
+    }
+    
+    .footer-about p {
+        margin-bottom: 25px;
+        opacity: 0.9;
+        max-width: 400px;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+        background-color: var(--accent);
+        transform: translateY(-3px);
+    }
+    
+    .footer-links h3 {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    .footer-links h3::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 3px;
+        background-color: var(--accent);
+        bottom: 0;
+        left: 0;
+    }
+    
+    .footer-links ul {
+        list-style: none;
+    }
+    
+    .footer-links ul li {
+        margin-bottom: 15px;
+    }
+    
+    .footer-links ul li a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+    
+    .footer-links ul li a:hover {
+        color: white;
+        transform: translateX(5px);
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        z-index: 1;
+    }
+    
+    .footer-bottom p {
+        font-size: 0.95rem;
+        opacity: 0.7;
+    }
+    
+    /* レスポンシブデザイン */
+    @media (max-width: 1200px) {
+        .catchphrase {
+            font-size: 2.5rem;
+        }
+        
+        .catchphrase .highlight {
+            font-size: 1.6rem;
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .footer-about {
+            grid-column: span 2;
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .hero-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .hero-image-container {
+            margin-top: 40px;
+        }
+        
+        .about-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .about-image {
+            order: -1;
+        }
+        
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .contact-info {
+            padding-right: 0;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        nav ul {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        nav ul.active {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin: 20px 0;
+        }
+        
+        nav ul li a {
+            font-size: 1.5rem;
+        }
+        
+        .mobile-menu {
+            display: block;
+        }
+        
+        .catchphrase {
+            font-size: 2.2rem;
+        }
+        
+        .catchphrase .highlight {
+            font-size: 1.4rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+        }
+        
+        .section-title p {
+            font-size: 1rem;
+        }
+        
+        .philosophy-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .info-table th {
+            width: 40%;
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .footer-about {
+            grid-column: span 1;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .catchphrase {
+            font-size: 1.8rem;
+        }
+        
+        .catchphrase .highlight {
+            font-size: 1.2rem;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .btn-secondary {
+            margin-left: 0;
+        }
+        
+        .company-info {
+            padding: 30px;
+        }
+        
+        .info-table th, .info-table td {
+            display: block;
+            width: 100%;
+        }
+        
+        .info-table th {
+            padding-bottom: 5px;
+        }
+        
+        .info-table td {
+            padding-top: 5px;
+            padding-bottom: 20px;
+        }
+        
+        .contact-form {
+            padding: 30px;
+        }
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="header-container container">
+        <div class="logo" style="background: none;">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/emosys_icon-237BJLNKe3f36AIyXfvIGaDfbcuyC9.png" alt="株式会社エモシス" style="background: none;">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">企業理念</a></li>
+                <li><a href="#services">事業内容</a></li>
+                <li><a href="#company">会社概要</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu">☰</div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-particles">
+        <span class="particle" style="width: 50px; height: 50px; top: 10%; left: 10%; animation-delay: 0s;"></span>
+        <span class="particle" style="width: 70px; height: 70px; top: 20%; left: 80%; animation-delay: 1s;"></span>
+        <span class="particle" style="width: 30px; height: 30px; top: 60%; left: 30%; animation-delay: 2s;"></span>
+        <span class="particle" style="width: 60px; height: 60px; top: 80%; left: 70%; animation-delay: 3s;"></span>
+        <span class="particle" style="width: 40px; height: 40px; top: 40%; left: 50%; animation-delay: 4s;"></span>
+    </div>
+    <div class="hero-container container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <span class="company-name">株式会社エモシス</span>
+                <div class="catchphrase-wrapper">
+                    <h1 class="catchphrase">
+                        <span class="highlight">Emotion × System</span>
+                        システムで感動を生む
+                    </h1>
+                </div>
+                <p>私たちは、業務効率化やDXの枠にとどまらず、「人の心を動かす」ことをゴールとするシステム会社です。ユーザーや現場の声に耳を傾け、本当に必要とされる仕組みを丁寧に設計・構築していきます。</p>
+                <div class="btn-container">
+                    <a href="#contact" class="btn">お問い合わせ</a>
+                    <a href="#about" class="btn btn-secondary">詳しく見る</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <div class="hero-decoration"></div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="日本のシステム開発">
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#about" class="scroll-down">
+        <span>スクロール</span>
+        <div class="arrow"></div>
+    </a>
+</section>
+
+<section id="about" class="about">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-subtitle">About Us</span>
+            <h2>企業理念</h2>
+            <p>私たちが目指すシステム開発のかたち</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>私たちは、ただ「動くシステム」ではなく、<span class="highlight-text">「心が動くシステム」</span>をつくりたい。そんな想いから、<span class="highlight-text">「Emotion（感動）」</span>×<span class="highlight-text accent">「System（仕組み）」</span>という言葉を掲げ、社名にもその理念を込めました。</p>
+                <p>システムは本来、課題を解決し、業務を効率化するためのもの。しかし私たちは、そこに<span class="highlight-text">"人の感情"</span>や<span class="highlight-text">"喜び"</span>、<span class="highlight-text">"気づき"</span>といった価値が重なったとき、それは単なるツールではなく、<span class="highlight-text accent">"感動を生む仕組み"</span>へと進化すると考えています。</p>
+                <p>テクノロジーや設計力だけでなく、<span class="highlight-text">「人の心」</span>にしっかりと向き合う姿勢を大切にしながら、クライアントやチームの<span class="highlight-text accent">「感動を設計する」</span>パートナーであり続けたいと考えています。</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="エモシスの企業理念">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="philosophy">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-subtitle">Our Vision</span>
+            <h2>私たちが目指す"心が動く瞬間"</h2>
+            <p>感動を生み出す3つの価値</p>
+        </div>
+        <div class="philosophy-grid">
+            <div class="philosophy-point">
+                <div class="philosophy-icon">✨</div>
+                <h3>クライアントが「本当にこれがほしかった」と感じる瞬間。</h3>
+                <p>ユーザーや現場の声に耳を傾け、本当に必要とされる仕組みを丁寧に設計・構築していきます。お客様のビジネスや業務を深く理解し、真に価値あるソリューションを提供します。</p>
+            </div>
+            <div class="philosophy-point">
+                <div class="philosophy-icon">🤝</div>
+                <h3>チームの連携がうまくいき、「やってよかった」と思える瞬間。</h3>
+                <p>プロジェクトに関わる全ての人が、達成感と成長を感じられるよう、チーム全体のコミュニケーションと協力体制を大切にします。一人ひとりの強みを活かし、共に成長する環境を作ります。</p>
+            </div>
+            <div class="philosophy-point">
+                <div class="philosophy-icon">😊</div>
+                <h3>現場が変わり、働く人たちの表情が明るくなる瞬間。</h3>
+                <p>システム導入によって、業務の効率化だけでなく、働く人々の負担軽減や、新たな気づきをもたらすことを目指します。テクノロジーを通じて、人々の働き方や生活の質を向上させることに貢献します。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-subtitle">Services</span>
+            <h2>事業内容</h2>
+            <p>感動を設計するパートナーとして</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="プロジェクトマネジメント">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">📊</div>
+                    <h3>プロジェクトマネジメント</h3>
+                    <p>システム開発やIT導入のプロジェクトにおいて、計画立案から進行管理、リスク対応まで一貫して支援します。お客様のビジネスや業務を理解し、つくる側と使う側の橋渡しとしてプロジェクト全体をまとめあげる、"伴走型"のプロジェクトマネジメントを提供します。</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="技術コンサルティング・DX支援">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">💡</div>
+                    <h3>技術コンサルティング・DX支援</h3>
+                    <p>「システムを導入したいが、何から始めればよいかわからない」といったお客様に対して、既存業務のヒアリングを行い、Excelや紙で運用されている業務の見直し・デジタル化をサポートします。</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Webサイト制作">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">🌐</div>
+                    <h3>Webサイト制作</h3>
+                    <p>自社サービスや事業紹介用のWebサイトも、企画から制作まで対応します。ヒアリングを重視し、伝えたいことがしっかり伝わるデザイン・構成を心がけています。公開後の保守や改善提案も可能です。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="company" class="company">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-subtitle">Company</span>
+            <h2>会社概要</h2>
+            <p>株式会社エモシスについて</p>
+        </div>
+        <div class="company-info">
+            <table class="info-table">
+                <tr>
+                    <th>会社名</th>
+                    <td>株式会社エモシス</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>東京都渋谷区神南１丁目１１−４　ＦＰＧリンクス神南 5階</td>
+                </tr>
+                <tr>
+                    <th>代表者名</th>
+                    <td>代表取締役　松井祐樹</td>
+                </tr>
+                <tr>
+                    <th>資本金</th>
+                    <td>1,000,000円</td>
+                </tr>
+                <tr>
+                    <th>設立年月</th>
+                    <td>2025年1月</td>
+                </tr>
+                <tr>
+                    <th>主要取引銀行</th>
+                    <td>三井住友銀行</td>
+                </tr>
+                <tr>
+                    <th>事業内容</th>
+                    <td>システム開発</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-subtitle">Contact</span>
+            <h2>お問い合わせ</h2>
+            <p>ご質問やお見積りのご依頼など、お気軽にお問い合わせください</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-method">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>所在地</strong>
+                        <p>東京都渋谷区神南１丁目１１−４　ＦＰＧリンクス神南 5階</p>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>電話番号</strong>
+                        <p>03-XXXX-XXXX（平日 9:00〜18:00）</p>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <strong>メールアドレス</strong>
+                        <p>info@emosis.co.jp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">お名前 <span style="color: #e53e3e;">*</span></label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">会社名</label>
+                        <input type="text" id="company" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス <span style="color: #e53e3e;">*</span></label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容 <span style="color: #e53e3e;">*</span></label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">送信する</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo" style="background: none;">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/emosys_icon-237BJLNKe3f36AIyXfvIGaDfbcuyC9.png" alt="株式会社エモシス" style="background: none;">
+                </div>
+                <p>Emotion ✕ System ― システムで感動を生む<br>業務効率化やDXの枠にとどまらず、「人の心を動かす」ことをゴールとするシステム会社です。</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">X</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>サイトマップ</h3>
+                <ul>
+                    <li><a href="#about">企業理念</a></li>
+                    <li><a href="#services">事業内容</a></li>
+                    <li><a href="#company">会社概要</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>所在地</h3>
+                <p>〒150-0041<br>東京都渋谷区神南１丁目１１−４<br>ＦＰＧリンクス神南 5階</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 株式会社エモシス All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // モバイルメニューの切り替え
+    document.querySelector('.mobile-menu').addEventListener('click', function() {
+        const nav = document.querySelector('nav ul');
+        nav.classList.toggle('active');
+        this.textContent = nav.classList.contains('active') ? '✕' : '☰';
+    });
+
+    // スムーススクロール
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // モバイルメニューを閉じる
+                if (window.innerWidth <= 768) {
+                    document.querySelector('nav ul').classList.remove('active');
+                    document.querySelector('.mobile-menu').textContent = '☰';
+                }
+            }
+        });
+    });
+    
+    // ヘッダースクロール効果
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+</body>
+</html>
