@@ -203,7 +203,11 @@
     .hero-content {
         position: relative;
     }
-    
+    @media (max-width: 480px) {
+        .hero-content {
+            padding: 0 20px;
+        }
+    }
     .company-name {
         font-size: 1.2rem;
         font-weight: 500;
@@ -755,10 +759,9 @@
     }
     
     .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        display: flex;
         align-items: center;
+        justify-content: center;
     }
     
     .contact-info {
@@ -797,6 +800,7 @@
     }
     
     .contact-form {
+        width: 570px;
         background-color: white;
         padding: 50px;
         border-radius: var(--border-radius);
@@ -1161,7 +1165,7 @@
 <header>
     <div class="header-container container">
         <div class="logo" style="background: none;">
-            <img src="images/emosys_icon.png" alt="株式会社エモシス" style="background: none;">
+            <img src="images/emosys_logo.png" alt="株式会社エモシス" style="background: none;">
         </div>
         <nav>
             <ul>
@@ -1202,7 +1206,7 @@
             <div class="hero-image-container">
                 <div class="hero-decoration"></div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="日本のシステム開発">
+                    <img src="images/hero.jpeg" alt="システム開発会社" wight="573" hegiht="332">
                 </div>
             </div>
         </div>
@@ -1222,12 +1226,12 @@
         </div>
         <div class="about-content">
             <div class="about-text">
-                <p>私たちは、ただ「動くシステム」ではなく、<span class="highlight-text">「心が動くシステム」</span>をつくりたい。そんな想いから、<span class="highlight-text">「Emotion（感動）」</span>×<span class="highlight-text accent">「System（仕組み）」</span>という言葉を掲げ、社名にもその理念を込めました。</p>
-                <p>システムは本来、課題を解決し、業務を効率化するためのもの。しかし私たちは、そこに<span class="highlight-text">"人の感情"</span>や<span class="highlight-text">"喜び"</span>、<span class="highlight-text">"気づき"</span>といった価値が重なったとき、それは単なるツールではなく、<span class="highlight-text accent">"感動を生む仕組み"</span>へと進化すると考えています。</p>
-                <p>テクノロジーや設計力だけでなく、<span class="highlight-text">「人の心」</span>にしっかりと向き合う姿勢を大切にしながら、クライアントやチームの<span class="highlight-text accent">「感動を設計する」</span>パートナーであり続けたいと考えています。</p>
+                <p>私たちは、ただ「動くシステム」ではなく、「心が動くシステム」</span>をつくりたい。そんな想いから、<span class="highlight-text accent">「Emotion（感動）」</span>×<span class="highlight-text">「System（仕組み）」</span>という言葉を掲げ、社名にもその理念を込めました。</p>
+                <p>システムは本来、課題を解決し、業務を効率化するためのもの。しかし私たちは、そこに<span class="highlight-text accent">"人の感情"</span>や<span class="highlight-text accent">"喜び"</span>、<span class="highlight-text accent">"気づき"</span>といった価値が重なったとき、それは単なるツールではなく、<span class="highlight-text">"感動を生む仕組み"</span>へと進化すると考えています。</p>
+                <p>テクノロジーや設計力だけでなく、<span class="highlight-text accent">「人の心」</span>にしっかりと向き合う姿勢を大切にしながら、クライアントやチームの<span class="highlight-text">「感動を設計する」</span>パートナーであり続けたいと考えています。</p>
             </div>
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="エモシスの企業理念">
+                <img src="images/about.jpeg" alt="エモシスの企業理念">
             </div>
         </div>
     </div>
@@ -1242,17 +1246,14 @@
         </div>
         <div class="philosophy-grid">
             <div class="philosophy-point">
-                <div class="philosophy-icon">✨</div>
                 <h3>クライアントが「本当にこれがほしかった」と感じる瞬間。</h3>
                 <p>ユーザーや現場の声に耳を傾け、本当に必要とされる仕組みを丁寧に設計・構築していきます。お客様のビジネスや業務を深く理解し、真に価値あるソリューションを提供します。</p>
             </div>
             <div class="philosophy-point">
-                <div class="philosophy-icon">🤝</div>
                 <h3>チームの連携がうまくいき、「やってよかった」と思える瞬間。</h3>
                 <p>プロジェクトに関わる全ての人が、達成感と成長を感じられるよう、チーム全体のコミュニケーションと協力体制を大切にします。一人ひとりの強みを活かし、共に成長する環境を作ります。</p>
             </div>
             <div class="philosophy-point">
-                <div class="philosophy-icon">😊</div>
                 <h3>現場が変わり、働く人たちの表情が明るくなる瞬間。</h3>
                 <p>システム導入によって、業務の効率化だけでなく、働く人々の負担軽減や、新たな気づきをもたらすことを目指します。テクノロジーを通じて、人々の働き方や生活の質を向上させることに貢献します。</p>
             </div>
@@ -1270,7 +1271,7 @@
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-image">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="プロジェクトマネジメント">
+                    <img src="images/business_1.jpeg"  alt="プロジェクトマネジメント">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">📊</div>
@@ -1280,7 +1281,7 @@
             </div>
             <div class="service-card">
                 <div class="service-image">
-                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="技術コンサルティング・DX支援">
+                    <img src="images/business_2.jpeg" alt="技術コンサルティング・DX支援">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">💡</div>
@@ -1290,7 +1291,7 @@
             </div>
             <div class="service-card">
                 <div class="service-image">
-                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Webサイト制作">
+                    <img src="images/business_3.jpeg" alt="Webサイト制作">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">🌐</div>
@@ -1352,29 +1353,6 @@
             <p>ご質問やお見積りのご依頼など、お気軽にお問い合わせください</p>
         </div>
         <div class="contact-grid">
-            <div class="contact-info">
-                <div class="contact-method">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <strong>所在地</strong>
-                        <p>東京都渋谷区神南１丁目１１−４　ＦＰＧリンクス神南 5階</p>
-                    </div>
-                </div>
-                <div class="contact-method">
-                    <div class="contact-icon">📞</div>
-                    <div>
-                        <strong>電話番号</strong>
-                        <p>03-XXXX-XXXX（平日 9:00〜18:00）</p>
-                    </div>
-                </div>
-                <div class="contact-method">
-                    <div class="contact-icon">✉️</div>
-                    <div>
-                        <strong>メールアドレス</strong>
-                        <p>info@emosis.co.jp</p>
-                    </div>
-                </div>
-            </div>
             <div class="contact-form">
                 <form>
                     <div class="form-group">
@@ -1408,12 +1386,10 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-about">
-                <div class="footer-logo" style="background: none;">
-                    <img src="images/emosys_icon.png" alt="株式会社エモシス" style="background: none;">
-                </div>
+                <span class="company-name">株式会社エモシス</span>
                 <p>Emotion ✕ System ― システムで感動を生む<br>業務効率化やDXの枠にとどまらず、「人の心を動かす」ことをゴールとするシステム会社です。</p>
                 <div class="social-links">
-                    <a href="#" class="social-link">X</a>
+                    <a href="https://x.com/matchan0121" class="social-link">X</a>
                 </div>
             </div>
             <div class="footer-links">
