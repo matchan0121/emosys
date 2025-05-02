@@ -2,12 +2,23 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="index, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>株式会社エモシス | システムで感動を生む</title>
+<meta name="description" content="株式会社エモシスは、業務効率化やDXの枠にとどまらず、「人の心を動かす」ことをゴールとするシステム会社です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="shortcut icon" type="image/x-icon" href="images/emosys_favicon.ico">
+<script type="text/javascript">
+    let submitted = false;
+</script>
+<iframe
+    name="hidden_iframe"
+    id="hidden_iframe"
+    style="display: none"
+    onload="if(submitted){window.location='thanks.html';}"
+></iframe>
 <style>
     :root {
         --primary: #016AAD;
@@ -1355,26 +1366,38 @@
         </div>
         <div class="contact-grid">
             <div class="contact-form">
-                <form>
+                <form class="c-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfCfYbb7WUWsf2c4XCaUyrH7wYbPClDEX_P-IrQ4VTurrnSIw/formResponse" method="POST"
+                target="hidden_iframe" onsubmit="submitted=true;">
                     <div class="form-group">
-                        <label for="name">お名前 <span style="color: #e53e3e;">*</span></label>
-                        <input type="text" id="name" class="form-control" required>
+                        <label for="name">お名前・会社名 <span style="color: #e53e3e;">*</span></label>
+                        <input
+                        name="entry.960323262"
+                        id="name"
+                        class="form-control"
+                        placeholder="株式会社 山田"
+                        type="text"
+                        required="required"
+                        />
                     </div>
                     <div class="form-group">
-                        <label for="company">会社名</label>
-                        <input type="text" id="company" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">メールアドレス <span style="color: #e53e3e;">*</span></label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">電話番号</label>
-                        <input type="tel" id="phone" class="form-control">
+                        <label for="email">ご連絡先 <span style="color: #e53e3e;">*</span></label>
+                        <input
+                        name="entry.1807835324"
+                        id="email"
+                        class="form-control"
+                        placeholder="sample@gmail.com"
+                        type="email"
+                        required="required"
+                        />
                     </div>
                     <div class="form-group">
                         <label for="message">お問い合わせ内容 <span style="color: #e53e3e;">*</span></label>
-                        <textarea id="message" class="form-control" required></textarea>
+                        <textarea
+                        name="entry.1169044174"
+                        class="form-control"
+                        id="message"
+                        placeholder="お問い合わせ内容"
+                        ></textarea>
                     </div>
                     <button type="submit" class="submit-btn">送信する</button>
                 </form>
